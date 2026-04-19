@@ -5,49 +5,136 @@ h1 {
   margin: 8px 0px;
 }
 
-/* Constrain the page to the viewport */
 html, body {
   height: 100vh;
+  margin: 0;
 }
 
-/* Center the nav's header and list */
+/* --- Accordion Styling für Mobile --- */
+.collapse-trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 0 16px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.collapse-arrow {
+  font-size: 1.5rem;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+  transform: rotate(0deg);
+}
+
+.collapse-panel {
+  display: block;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease-out;
+}
+
+.genres-section.open .collapse-panel {
+  max-height: 1000px;
+}
+
+.genres-section.open .collapse-arrow {
+  transform: rotate(90deg);
+}
+/* ---------------------------------- */
+
 nav {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* navigation buttons have full width */
 nav button {
   width: 100%;
 }
 
-/* Remove unnecessary space and bullets from the lists */
 ul {
   padding: 0px;
   margin: 16px;
   list-style-type: none;
 }
 
-/* Task 2.1. Lay out the childs of the 'body' using Grid Template Areas. */
+body {
+  display: grid;
+  grid-template-areas:
+    "header"
+    "nav"
+    "main"
+    "footer";
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-columns: 1fr;
+}
 
+header { grid-area: header; }
+nav { grid-area: nav; }
+main {
+  grid-area: main;
+  overflow-y: auto;
+}
+footer { grid-area: footer; }
 
-/* Task 3.1. Make the header element a flex container and center its children
-   vertically and horizontally.
- */
+@media (min-width: 768px) {
+  body {
+    grid-template-areas:
+      "header header"
+      "nav main"
+      "footer footer";
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 200px 1fr;
+  }
 
+  /* Accordion auf dem Desktop deaktivieren */
+  .collapse-panel {
+    max-height: none;
+    overflow: visible;
+  }
+  .collapse-arrow {
+    display: none;
+  }
+  .collapse-trigger {
+    cursor: default;
+  }
+}
 
-/* Task 3.2. Make the list items of the unordered list in the nav element a flex container, 
-   use column direction and center the child items
- */
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-/* Task 3.3. Make the main element a Flexbox container */
+nav ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  gap: 8px;
+}
 
+nav ul li {
+  width: 100%;
+}
 
-/* Task 3.4. Make the footer's ul a Flexbox container */
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 16px;
+}
 
+footer ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
 
-/* From here on styling from exercise 1 */
 img {
   border-radius: 12px;
 }
@@ -60,13 +147,8 @@ article {
   margin: 8px;
 }
 
-a {
-  color: beige;
-}
-
-span {
-  margin-right: 4px;
-}
+a { color: beige; }
+span { margin-right: 4px; }
 
 .genre {
   padding: 4px 8px;
