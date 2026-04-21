@@ -7,6 +7,7 @@ const app = express();
 
 app.use(bodyParser.json()); 
 app.use(express.static(path.join(__dirname, 'files')));
+app.use('/images', express.static(path.join(__dirname, '../images')));
 
 app.get('/genres', function(req, res) {
   const movies = Object.values(movieModel);
