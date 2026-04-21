@@ -1,8 +1,9 @@
 @import url(base.css);
 
-h1 {
-  font-size: 200%;
-  margin: 8px 0px;
+h1, h2 {
+  font-size: 1.5rem;
+  margin: 12px 0px;
+  color: #f8fafc;
 }
 
 html, body {
@@ -10,20 +11,29 @@ html, body {
   margin: 0;
 }
 
-/* --- Accordion Styling für Mobile --- */
 .collapse-trigger {
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  padding: 0 16px;
+  padding: 12px 20px;
   width: 80%;
-  margin: 0 auto;
+  margin: 16px auto;
+  background-color: transparent;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.collapse-trigger:hover {
+  border-color: #00FFFF;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
 }
 
 .collapse-arrow {
   font-size: 1.5rem;
   font-weight: bold;
+  color: #00FFFF;
   transition: transform 0.3s ease;
   transform: rotate(0deg);
 }
@@ -42,7 +52,6 @@ html, body {
 .genres-section.open .collapse-arrow {
   transform: rotate(90deg);
 }
-/* ---------------------------------- */
 
 nav {
   display: flex;
@@ -71,13 +80,27 @@ body {
   grid-template-columns: 1fr;
 }
 
-header { grid-area: header; }
-nav { grid-area: nav; }
+header { 
+  grid-area: header; 
+  background-color: #0b0f19;
+  border-bottom: 1px solid #1e293b;
+  z-index: 10;
+}
+
+nav { grid-area: nav; padding-top: 16px;}
+
 main {
   grid-area: main;
   overflow-y: auto;
+  padding: 24px;
 }
-footer { grid-area: footer; }
+
+footer { 
+  grid-area: footer; 
+  background-color: #0b0f19;
+  border-top: 1px solid #1e293b;
+  color: #64748b;
+}
 
 @media (min-width: 768px) {
   body {
@@ -86,10 +109,9 @@ footer { grid-area: footer; }
       "nav main"
       "footer footer";
     grid-template-rows: auto 1fr auto;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 240px 1fr;
   }
 
-  /* Accordion auf dem Desktop deaktivieren */
   .collapse-panel {
     max-height: none;
     overflow: visible;
@@ -99,6 +121,13 @@ footer { grid-area: footer; }
   }
   .collapse-trigger {
     cursor: default;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+  }
+  .collapse-trigger:hover {
+    border: none;
+    box-shadow: none;
   }
 }
 
@@ -106,14 +135,15 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 16px 0;
 }
 
 nav ul {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80%;
-  gap: 8px;
+  width: 85%;
+  gap: 10px;
 }
 
 nav ul li {
@@ -125,7 +155,7 @@ main {
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 16px;
+  gap: 24px;
 }
 
 footer ul {
@@ -133,6 +163,23 @@ footer ul {
   justify-content: center;
   align-items: center;
   gap: 16px;
+  margin: 16px 0;
+}
+
+article {
+  background-color: rgba(15, 23, 42, 0.7);
+  border-radius: 16px;
+  padding: 20px;
+  width: 340px;
+  border: 2px solid #1e293b;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  transition: all 0.4s ease;
+}
+
+article:hover {
+  transform: translateY(-6px);
+  border-color: #00FFFF;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3), 0 0 30px rgba(0, 255, 255, 0.1); 
 }
 
 img {
@@ -140,23 +187,23 @@ img {
   width: 100%;
   height: auto;
   display: block;
+  margin-bottom: 16px;
 }
 
-article {
-  background-color: lightgray;
-  border-radius: 16px;
-  padding: 16px;
-  width: 384px;
-  margin: 8px;
-}
+a { color: #00FFFF; text-decoration: none; transition: all 0.2s; }
+a:hover { color: #ffffff; text-shadow: 0 0 8px #00FFFF; text-decoration: none; }
 
-a { color: beige; }
 span { margin-right: 4px; }
 
 .genre {
-  padding: 4px 8px;
-  border: solid black 1px;
-  border-radius: 6px;
-  background-color: darkgray;
-  font-weight: bold;
+  padding: 6px 12px;
+  border: 1px solid #00FFFF;
+  border-radius: 20px;
+  background-color: transparent;
+  color: #00FFFF;
+  font-weight: 600;
+  font-size: 0.85rem;
+  display: inline-block;
+  margin-bottom: 8px;
+  box-shadow: inset 0 0 5px rgba(0, 255, 255, 0.2); 
 }
